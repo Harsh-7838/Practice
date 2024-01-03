@@ -8,27 +8,30 @@ spec:
   selector:
     matchLabels:
       app: nginx
+  strategy:
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50%
+    type: RollingUpdate
   template:
     metadata:
       labels:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: nginx:latest
-        ports:
-        - containerPort: 80
-        resources:
-          limits:
-            memory: "256Mi"   
-            cpu: "200m"       
-          requests:
-            memory: "128Mi"   
-            cpu: "100m"       
-
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
 
 ---
-
 # nginx-service.yaml
 apiVersion: v1
 kind: Service
@@ -36,9 +39,9 @@ metadata:
   name: nginx-service
 spec:
   selector:
-    app: nginx  # Match the labels used in your deployment
+    app: nginx # Match the labels used in your deployment
   ports:
     - protocol: TCP
       port: 80
       targetPort: 80
-  type: ClusterIP  # Use ClusterIP for internal communication within the cluster
+  type: ClusterIP # Use ClusterIP for internal communication within the cluster

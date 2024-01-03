@@ -1,3 +1,9 @@
+Task 4 : DevOps & Automation
+● Write a script (bash, Python, or your preferred language) to automate the backup of an AWS S3
+bucket.
+● Implement a process to automatically scale EC2 instances based on CPU utilization.
+
+
 # Automatic Scaling with AWS Auto Scaling
 
 To automatically scale EC2 instances based on CPU utilization, AWS Auto Scaling can be utilized. AWS Auto Scaling enables you to dynamically adjust the number of EC2 instances in an Auto Scaling group based on specified criteria.

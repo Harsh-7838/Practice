@@ -1,8 +1,9 @@
-### This repository is no longer maintained!
+Task 3 : CI/CD with GitHub Actions
+● Set up a GitHub repository for your sample application.
+● Create a GitHub Actions workflow to build and test the application on every push.
+● Implement a deployment workflow for automatically deploying to a staging environment.
 
-**For the most up to date test app to get you started on Heroku, head on over to [`node-js-getting-started`](https://github.com/heroku/node-js-getting-started).**
 
----
 
 # node-js-sample
 
@@ -21,24 +22,20 @@ npm start
 
 Your app should now be running on [localhost:5000](http://localhost:5000/).
 
-## Deploying to Heroku
+## Deploying to staging using Github action workflow
 
-```
-heroku create
-git push heroku master
-heroku open
-```
+On the push to the main branch it will trigger the workflow with name Build and Test.
+-   Step 1: It will assign you a runner with ubuntu OS to setup your required environment and execute your steps
+-   Step 2: Now it will checkout your code in first step, then it will run the docker build, after that it will push the docker image to your repository.
 
-Alternatively, you can deploy your own copy of the app using the web-based flow:
+We can add another step for the testing but as i wasn't able to find an application with test case so wasn't able to add it in the pipeline. and also for the same I didn't had a registry and eks cluster with me.
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+All the environment variables would be passed as Github secrets from the respository settings.
 
-## Documentation
 
-For more information about using Node.js on Heroku, see these Dev Center articles:
+Now once it is successful then only the job will be executed in the next deploy workflow.
 
-- [10 Habits of a Happy Node Hacker](https://blog.heroku.com/archives/2014/3/11/node-habits)
-- [Getting Started with Node.js on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
-- [Heroku Node.js Support](https://devcenter.heroku.com/articles/nodejs-support)
-- [Node.js on Heroku](https://devcenter.heroku.com/categories/nodejs)
-- [Using WebSockets on Heroku with Node.js](https://devcenter.heroku.com/articles/node-websockets)
+Step1:- you would need to add the access key, secret key , and region as git repository secrets and those would be used to authenticate with the AWS for EKS.
+
+Step2:- It will install the kubectl if it is not present there and then in the next step it will run the kubectl apply command for deploying it to the staging environment.
+
