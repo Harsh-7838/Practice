@@ -11,7 +11,7 @@ COPY Task_3/package*.json ./
 RUN npm install
 
 # Bundle app source
-COPY . .
+COPY Task_3/* .
 
 # Expose port 3000
 EXPOSE 5000
