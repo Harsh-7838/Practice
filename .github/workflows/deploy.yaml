@@ -7,9 +7,9 @@ on:
       - completed
 
 jobs:
-  deploy_to_eks:
+  on-success:
     runs-on: ubuntu-latest
-
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
