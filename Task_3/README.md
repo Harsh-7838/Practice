@@ -39,3 +39,6 @@ Step1:- you would need to add the access key, secret key , and region as git rep
 
 Step2:- It will install the kubectl if it is not present there and then in the next step it will run the kubectl apply command for deploying it to the staging environment.
 
+
+Except that we can create helm charts as well for easy management of manifest files and also we can add more stages to the pipeline such as semantic versioning , sonarqube analysis and more according to the requirement
+
